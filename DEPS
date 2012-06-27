@@ -29,7 +29,7 @@
 # This file is used by gclient to fetch the projects that Cloud9 depends on.
 
 vars = {
-  "depot_prefix": "ssh://git@dslabgit.epfl.ch",
+  "depot_prefix": "https://code.google.com/p/cloud9",
 
   "libcxx_trunk":
     "http://llvm.org/svn/llvm-project/libcxx/trunk",
@@ -40,16 +40,16 @@ vars = {
 
 deps = {
   "src/cloud9":
-    Var("depot_prefix") + "/cloud9-depot/cloud9.git",
+    Var("depot_prefix") + "/",
   "src/klee-uclibc":
-    Var("depot_prefix") + "/cloud9-depot/uclibc.git",
+    Var("depot_prefix") + ".uclibc/",
 
   "src/third_party/stp":
     "https://stp-fast-prover.svn.sourceforge.net/svnroot/stp-fast-prover/trunk/stp",
   "src/third_party/gyp":
     "http://gyp.googlecode.com/svn/trunk@1417",
   "src/third_party/boolector":
-    Var("depot_prefix") + "/cloud9-depot/boolector.git",
+    Var("depot_prefix") + ".boolector/",
 
   # Testing targets
   "src/testing_targets/libcxx":
