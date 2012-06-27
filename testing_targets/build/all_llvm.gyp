@@ -10,6 +10,7 @@
       'dependencies': [
         'libcxx.gyp:*',
         '../ots/ots-standalone.gyp:*',
+        '../examples/examples.gyp:*',
       ],
     },
   ],
