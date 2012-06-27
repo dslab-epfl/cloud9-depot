@@ -29,7 +29,7 @@
 # This file is used by gclient to fetch the projects that Cloud9 depends on.
 
 vars = {
-  "depot_prefix": "https://code.google.com/p/cloud9",
+  "depot_prefix": "git+https://code.google.com/p/cloud9",
 
   "libcxx_trunk":
     "http://llvm.org/svn/llvm-project/libcxx/trunk",
