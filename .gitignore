@@ -1,0 +1,35 @@
+
+# Temporary files
+*~
+
+# Eclipse files
+.project
+
+# External repositories
+/cloud9
+/data
+/klee-uclibc
+/seven-summits
+/third_party/binutils
+/third_party/binutils-install
+/third_party/boolector
+/third_party/googlemock
+/third_party/googletest
+/third_party/gyp
+/third_party/llvm
+/third_party/llvm-build
+/third_party/stp
+/testing_targets/libcxx/
+
+# GYP generated
+/Makefile
+/testing_targets/Makefile
+*.target.mk
+*.Makefile
+
+# Generated binaries
+/out
+/testing_targets/out
+
+# Third party download cache
+/third_party/.downloads
