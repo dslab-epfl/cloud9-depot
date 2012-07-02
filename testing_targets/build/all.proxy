@@ -26,12 +26,12 @@ llvm_plugin = os.path.join(llvm_build, "lib/LLVMgold.so")
 
 script_mapping = {
   'gcc.proxy': {
-    'llvm': [os.path.join(llvm_build, "bin/clang"), "-flto"],
+    'llvm': [os.path.join(llvm_build, "bin/clang"), "-emit-llvm"],
     'clang': [os.path.join(llvm_build, "bin/clang")],
     'gcc': ["gcc"],
   },
   'g++.proxy': {
-    'llvm': [os.path.join(llvm_build, "bin/clang++"), "-flto"],
+    'llvm': [os.path.join(llvm_build, "bin/clang++"), "-emit-llvm"],
     'clang': [os.path.join(llvm_build, "bin/clang++")],
     'gcc': ["g++"],
   },

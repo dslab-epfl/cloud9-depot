@@ -56,7 +56,7 @@ function export-build-tools() {
   export RANLIB="${THIS_DIR}/ranlib.proxy"
   export NM="${THIS_DIR}/nm.proxy"
 
-  export LDFLAGS="-Wl,-plugin-opt=also-emit-llvm"
+  export LDFLAGS="-flto -Wl,-plugin-opt=also-emit-llvm"
   export ARFLAGS="-cru"
   export AR_FLAGS="-cru"
 }
