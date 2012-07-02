@@ -45,7 +45,7 @@ deps = {
     Var("depot_prefix") + ".uclibc/",
 
   "src/third_party/stp":
-    "https://stp-fast-prover.svn.sourceforge.net/svnroot/stp-fast-prover/trunk/stp",
+    "https://stp-fast-prover.svn.sourceforge.net/svnroot/stp-fast-prover/trunk/stp@1441",
   "src/third_party/gyp":
     "http://gyp.googlecode.com/svn/trunk@1417",
   "src/third_party/boolector":
