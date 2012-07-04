@@ -39,7 +39,7 @@
         '<!@(find <(stp_src)/AST -maxdepth 1 <(valid_extensions))',
         '<!@(find <(stp_src)/AST/NodeFactory -maxdepth 1 <(valid_extensions))',
         '<!@(find <(stp_src)/c_interface -maxdepth 1 <(valid_extensions))',
-        '<!@(find <(stp_src)/cpp_interface -maxdepth 1 <(valid_extensions))',
+        #'<!@(find <(stp_src)/cpp_interface -maxdepth 1 <(valid_extensions))',
         '<!@(find <(stp_src)/to-sat <(valid_extensions))',
       ],
     },
