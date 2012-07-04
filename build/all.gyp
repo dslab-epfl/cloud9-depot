@@ -38,7 +38,7 @@
         '../third_party/boolector/boolector.gyp:*',
         '../third_party/boolector/picosat/picosat.gyp:*',
         '../third_party/boolector/precosat/precosat.gyp:*',
-        'stp.gyp:*',
+        #'stp.gyp:*',
       ],
     }
   ]
