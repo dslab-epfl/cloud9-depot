@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-THIS_DIR="$(dirname "${0}")"
+THIS_DIR=$(readlink -f "$(dirname "${0}")")
 GYP_DIR="${THIS_DIR}/../../third_party/gyp"
 TOP_DIR="${THIS_DIR}/.."
 
