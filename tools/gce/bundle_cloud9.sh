@@ -2,6 +2,8 @@
 #
 # Copyright 2012 EPFL. All rights reserved.
 # Author: Stefan Bucur (stefan.bucur@epfl.ch)
+#
+# Package the Cloud9 binaries, in order to be deployed on a VM.
 
 THIS_DIR="$(dirname "${0}")"
 CLOUD9_DIR="${THIS_DIR}/.."
