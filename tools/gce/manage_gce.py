@@ -144,6 +144,10 @@ def HandleList(args):
   
   for instance in gce_manager.GetInstances():
     print instance.name
+    
+
+def HandleRun(args):
+  print args
 
 
 def Main():
@@ -171,6 +175,11 @@ def Main():
   list_parser = subparsers.add_parser("list",
                                       help="List running instances")
   list_parser.set_defaults(handler=HandleList)
+  
+  run_parser = subparsers.add_parser("run",
+                                     help="Run Cloud9 command")
+  run_parser.add_argument("cmdline", nargs=argparse.REMAINDER)
+  run_parser.set_defaults(handler=HandleRun)
   
   args = parser.parse_args()
   
