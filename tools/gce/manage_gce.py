@@ -9,6 +9,7 @@ __author__ = "stefan.bucur@epfl.ch (Stefan Bucur)"
 
 import argparse
 import logging
+import os
 import sys
 import time
 
@@ -25,6 +26,9 @@ except ImportError:
 
 CLOUD9_PROJECT = "cloud9-gce"
 CLOUD9_IMAGE = "cloud9-base"
+
+STARTUP_SCRIPT_PATH = os.path.join(os.path.dirname(__file__),
+                                   "startup_script.sh")
 
 
 class GCEManager(object):
@@ -52,9 +56,25 @@ class GCEManager(object):
     return sum(1 for _ in self.GetInstances())
   
   def AddInstances(self, count=1):
+    with open(STARTUP_SCRIPT_PATH, "r") as f:
+      startup_script = f.read()
+      
+    metadata = [
+      {
+        "key": "startup-script",
+        "value": startup_script,
+      }
+    ]
+    
+    svc_accounts = [
+      "https://www.googleapis.com/auth/devstorage.read_write",
+    ]
+     
     self.api.insert_instances(
         names=self._GetNewInstanceNames(count),
-        networkInterfaces=shortcuts.network())
+        networkInterfaces=shortcuts.network(),
+        metadata=gce_v1beta12.Metadata(metadata),
+        serviceAccounts=gce_v1beta12.ServiceAccount("default", svc_accounts))
     
   def RemoveInstances(self, count=1):
     del_instances = []
@@ -116,6 +136,14 @@ def HandleRemove(args):
   print "Removing %d existing instances" % del_inst_count
     
   gce_manager.RemoveInstances(del_inst_count)
+  
+  
+def HandleList(args):
+  gce_manager = GCEManager()
+  gce_manager.Initialize()
+  
+  for instance in gce_manager.GetInstances():
+    print instance.name
 
 
 def Main():
@@ -139,6 +167,10 @@ def Main():
   remove_parser.add_argument("--max-cap", type=int,
                              help="Minimum limit of total instances.")
   remove_parser.set_defaults(handler=HandleRemove)
+  
+  list_parser = subparsers.add_parser("list",
+                                      help="List running instances")
+  list_parser.set_defaults(handler=HandleList)
   
   args = parser.parse_args()
   
