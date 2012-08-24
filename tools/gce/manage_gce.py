@@ -8,6 +8,7 @@ __author__ = "stefan.bucur@epfl.ch (Stefan Bucur)"
 
 
 import argparse
+import json
 import logging
 import os
 import sys
@@ -29,6 +30,15 @@ CLOUD9_IMAGE = "cloud9-base"
 
 STARTUP_SCRIPT_PATH = os.path.join(os.path.dirname(__file__),
                                    "startup_script.sh")
+
+class Cloud9Node(object):
+  def __init__(self):
+    pass
+
+
+class Cloud9Manager(object):
+  def __init__(self, nodes):
+    self.nodes = nodes
 
 
 class GCEManager(object):
@@ -141,17 +151,29 @@ def HandleRemove(args):
 def HandleList(args):
   gce_manager = GCEManager()
   gce_manager.Initialize()
-  
-  for instance in gce_manager.GetInstances():
-    print instance.name
+
+  if args.print_cloud9:
+    data = []
+    for instance in gce_manager.GetInstances():
+      data.append({
+        "name": instance.name,
+        "host": instance.networkInterfaces[0].accessConfigs[0].natIP,
+        "cores": 1,
+        "root": "/opt/cloud9",
+        "user": "bucur",
+        "expdir": "/var/cloud9",
+      })
+    json.dump(data, sys.stdout, indent=2)
+  else:
+    for instance in gce_manager.GetInstances():
+      print instance.name
     
 
 def HandleRun(args):
   print args
 
 
-def Main():
-  
+def Main():  
   parser = argparse.ArgumentParser(description="GCE cloud management")
   parser.add_argument("-v", "--verbose", action="store_true", default=False,
                       help="Show low-level information")
@@ -174,6 +196,8 @@ def Main():
   
   list_parser = subparsers.add_parser("list",
                                       help="List running instances")
+  list_parser.add_argument("--print-cloud9", action="store_true", default=False,
+                           help="Print instances in Cloud9 format.")
   list_parser.set_defaults(handler=HandleList)
   
   run_parser = subparsers.add_parser("run",
