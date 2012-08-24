@@ -9,7 +9,7 @@
       'type': 'none',
       'dependencies': [
         'libcxx.gyp:*',
-        '../ots/ots-standalone.gyp:*',
+        '../ots/ots-standalone.gyp:ot-sanitise',
         '../examples/examples.gyp:*',
       ],
     },
