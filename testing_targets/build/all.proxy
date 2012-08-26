@@ -60,7 +60,13 @@ if config_opt not in ['llvm', 'clang', 'gcc']:
 cmd_line = script_mapping[script_name][config_opt]
 
 if len(sys.argv) > 1:
-  cmd_line.extend(sys.argv[1:])
+  
+  if script_name in ['ar.proxy']:
+    if sys.argv[1] in ['d','m','p','q','r', 's', 't']:
+      cmd_line.insert(1,sys.argv[1])      
+      cmd_line.extend(sys.argv[2:])
+  else:
+    cmd_line.extend(sys.argv[1:])
 
 llvm_args = [
   "-Wl,-plugin-opt=also-emit-llvm",
