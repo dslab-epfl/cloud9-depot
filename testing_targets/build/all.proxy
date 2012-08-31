@@ -14,6 +14,7 @@ __author__ = "stefan.bucur@epfl.ch (Stefan Bucur)"
 
 import os
 import sys
+import re
 
 
 script_dir = os.path.dirname(__file__)
@@ -62,9 +63,12 @@ cmd_line = script_mapping[script_name][config_opt]
 if len(sys.argv) > 1:
   
   if script_name in ['ar.proxy']:
-    if sys.argv[1] in ['d','m','p','q','r', 's', 't']:
-      cmd_line.insert(1,sys.argv[1])      
+    match = re.match('^-?[dmpqrstxabcDfilMNoPsSTuvV]*$',sys.argv[1])
+    if match is not None:
+      cmd_line.insert(1,sys.argv[1])
       cmd_line.extend(sys.argv[2:])
+    else:
+      cmd_line.extend(sys.argv[1:])
   else:
     cmd_line.extend(sys.argv[1:])
 
