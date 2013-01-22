@@ -61,6 +61,12 @@ hooks = [
   {
     "pattern": ".",
     "action": [
+      "src/build/download_glog.sh",
+    ],
+  },
+  {
+    "pattern": ".",
+    "action": [
       "src/build/download_binutils.sh",
     ],
   },
