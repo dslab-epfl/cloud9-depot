@@ -58,6 +58,12 @@ deps = {
 
 
 hooks = [
+{
+    "pattern": ".",
+    "action": [
+      "src/build/download_protobuf.sh",
+    ],
+  },
   {
     "pattern": ".",
     "action": [
