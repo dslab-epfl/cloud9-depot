@@ -45,7 +45,7 @@ deps = {
     Var("depot_prefix") + ".uclibc/",
 
   "src/third_party/stp":
-    "https://stp-fast-prover.svn.sourceforge.net/svnroot/stp-fast-prover/trunk/stp@1441",
+    "git+https://github.com/stp/stp.git@9ab2a59",
   "src/third_party/gyp":
     "http://gyp.googlecode.com/svn/trunk@1417",
   "src/third_party/boolector":
@@ -58,18 +58,6 @@ deps = {
 
 
 hooks = [
-{
-    "pattern": ".",
-    "action": [
-      "src/build/download_protobuf.sh",
-    ],
-  },
-  {
-    "pattern": ".",
-    "action": [
-      "src/build/download_glog.sh",
-    ],
-  },
   {
     "pattern": ".",
     "action": [
@@ -92,3 +80,8 @@ hooks = [
     "action": ["src/testing_targets/build/gyp_testing_targets"],
   },
 ]
+
+### Local variables:
+### mode: python
+### fill-column: 80
+### End:
