@@ -29,8 +29,6 @@
 # This file is used by gclient to fetch the projects that Cloud9 depends on.
 
 vars = {
-  "depot_prefix": "git+https://code.google.com/p/cloud9",
-
   "libcxx_trunk":
     "http://llvm.org/svn/llvm-project/libcxx/trunk",
   "libcxx_release31":
@@ -40,16 +38,16 @@ vars = {
 
 deps = {
   "src/cloud9":
-    Var("depot_prefix") + "/",
+    "git+https://github.com/dslab-epfl/cloud9.git",
   "src/klee-uclibc":
-    Var("depot_prefix") + ".uclibc/",
+    "git+https://github.com/dslab-epfl/cloud9-uclibc.git",
 
   "src/third_party/stp":
-    "https://stp-fast-prover.svn.sourceforge.net/svnroot/stp-fast-prover/trunk/stp@1441",
+    "git+https://github.com/stp/stp.git",
   "src/third_party/gyp":
     "http://gyp.googlecode.com/svn/trunk@1417",
   "src/third_party/boolector":
-    Var("depot_prefix") + ".boolector/",
+    "git+https://github.com/dslab-epfl/cloud9-boolector.git",
 
   # Testing targets
   "src/testing_targets/libcxx":
@@ -58,12 +56,6 @@ deps = {
 
 
 hooks = [
-  {
-    "pattern": ".",
-    "action": [
-      "src/build/download_glog.sh",
-    ],
-  },
   {
     "pattern": ".",
     "action": [
@@ -86,3 +78,8 @@ hooks = [
     "action": ["src/testing_targets/build/gyp_testing_targets"],
   },
 ]
+
+### Local variables:
+### mode: python
+### fill-column: 80
+### End:
