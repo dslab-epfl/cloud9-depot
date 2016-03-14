@@ -3,7 +3,7 @@
 # This script will download binutils into third_party/binutils and build it.
 
 # Do NOT CHANGE this, unless you know what you're doing
-BINUTILS_SNAPSHOT="binutils-2.24.tar.bz2"
+BINUTILS_SNAPSHOT="binutils-2.25.tar.bz2"
 
 
 THIS_DIR="$(dirname "${0}")"
